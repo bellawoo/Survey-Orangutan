@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # delete '/question/:id' => 'questions#delete'
   # delete '/question/:question_id/answer/:id' => 'answers#delete'
 
-  resources :questions
-  resources :answers
+  resources :questions do
+    resources :answers, except: [:index, :new, :show], shallow: true
+  end
 end
