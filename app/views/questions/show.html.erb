@@ -1,5 +1,6 @@
 <h2><%= @question.title %></h2>
 <p><%= @question.description %></p>
+<p>Posted by: <%= @question.user.email %></p>
 
 <div>
 <% if @new_answer.errors.any? %>
@@ -16,6 +17,7 @@
 <div>
   <h2>Submitted Answers</h2>
   <% @question.answers.each do |a| %>
-    <p><%= a.response %></p>
+    <p><%= a.response %><br>
+    <%= a.user.email %></p>
   <% end %>
 </div>

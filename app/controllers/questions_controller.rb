@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find params[:id]
     @answer = @question.answers
-    @new_answer = @question.answers.new
+    @new_answer = Answer.new
   end
 
   def new
@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
 
   def create
     question_params = params[:question]
-    @question = Question.new(
+    @question = current_user.questions.new(
       title: params[:question][:title],
       description: params[:question][:description]
       )

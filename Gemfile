@@ -13,12 +13,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'twitter-bootstrap-rails', '~>3.2.0'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
   gem 'better_errors'

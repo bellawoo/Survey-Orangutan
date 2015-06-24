@@ -8,16 +8,16 @@ class AnswersController < ApplicationController
   end
 
   def create
-    answer_params = params[:answer]
-    @new_answer = Answer.new(
-      answer: answer_params[:response],
-      question_id: answer_params[:question_id]
+    # answer_params = @answer params[:answer]
+    @new_answer = current_user.answers.new(
+      response: params[:answer][:response],
+      question_id: params[:answer][:question_id]
       )
     if @new_answer.save
-      linked_question = Question.find(answer[:question_id])
-      redirect_to question_path(answer), notice: "Answer submitted"
+      linked_question = Question.find(params[:answer][:question_id])
+      redirect_to question_path(linked_question), notice: "Answer submitted"
     else
-      redirect_to new_question_answer_path(answer), notice: "Something went wrong. Try again."
+      redirect_to question_path(linked_question), notice: "Something went wrong. Try again."
     end
   end
 
