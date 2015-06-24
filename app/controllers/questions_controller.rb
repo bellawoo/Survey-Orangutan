@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find params[:id]
     @answers = @question.answers.find params[:id]
-    # @answer = Answer.find params[:question_id]
+    @new_answer = @question.answers.new
   end
 
   def new

@@ -6,7 +6,7 @@
   <p><strong>Error!</strong> <%= @answer.errors.full_messages.to_sentence %></p>
 <% end %>
 
-<% bootstrap_form_for @answers do |a| %>
+<%= bootstrap_form_for @answers do |a| %>
   <%= a.text_area :response, label: "Answer this question" %>
   <%= a.hidden_field :question_id %>
   <button>Submit</button>
