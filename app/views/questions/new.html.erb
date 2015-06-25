@@ -1,11 +1,17 @@
-<h1>Ask a question</h1>
+<div class="container">
+  <h1>Ask a question</h1>
+</div>
 
 <% if @question.errors.any? %>
   <p><strong>Error!</strong> <%= @question.errors.full_messages.to_sentence %></p>
 <% end %>
 
-<%= bootstrap_form_for @question do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :description %>
-  <button>Ask</button>
-<% end %>
+<div class="form-group">
+  <%= bootstrap_form_for(@question, layout: :horizontal) do |f| %>
+   <%= f.text_field :title, label: "Question Title" %>
+    <%= f.text_area :description, label: "Describe It Some More" %>
+    <div class="col-sm-offset-2 col-sm-10">
+    <%= f.primary "Ask" %>
+    </div>
+  <% end %>
+</div>

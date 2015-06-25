@@ -1,23 +1,36 @@
-<h2><%= @question.title %></h2>
-<p><%= @question.description %></p>
-<p><small>Posted by: <%= @question.user.email %></small></p>
-
-<div>
-<% if @new_answer.errors.any? %>
-  <p><strong>Error!</strong> <%= @new_answer.errors.full_messages.to_sentence %></p>
-<% end %>
-
-<%= bootstrap_form_for [@question, @new_answer] do |a| %>
-  <%= a.text_area :response, label: "Answer this question" %>
-  <%= a.hidden_field :question_id %>
-  <button>Submit</button>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= @question.title %></h2>
+  </div>
+  <div class="panel-body">
+    <%= @question.description %><br>
+    <small>Posted by: <%= @question.user.email %></small>
+  </div>
 </div>
 
-<div>
-  <h2>Submitted Answers</h2>
-  <% @question.answers.each do |a| %>
-    <p><%= a.response %><br>
-    <small><%= a.user.email %></small></p>
+<div class="panel panel-default">
+  <% if @new_answer.errors.any? %>
+    <p><strong>Error!</strong> <%= @new_answer.errors.full_messages.to_sentence %></p>
   <% end %>
+  <div class="form-group">
+    <%= bootstrap_form_for [@question, @new_answer] do |a| %>
+      <%= a.text_area :response, label: "Answer This Question" %>
+      <%= a.hidden_field :question_id %>
+    </div>
+    <div class="col-sm-offset-0 col-sm-10">
+      <%= a.primary "Submit" %>
+    </div>
+    <% end %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Submitted Answers</h2>
+  </div>
+  <ul class="list-group">
+  <% @question.answers.each do |a| %>
+    <li class="list-group-item"><%= a.response %><br>
+    <small><%= a.user.email %></small></li>
+  <% end %>
+  </ul>
 </div>
